@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  haproxy:
+    image: haproxy
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - 8080:8080
+  nginx:
+    image: nginx
+    volumes:
+      - ./:/usr/share/nginx/html
+  node:
+    image: node:alpine
+    command: ["node", "app/index.js"]
+    volumes:
+      - ./node:/app
+    
